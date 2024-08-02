@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Form, Link, useLoaderData } from "react-router-dom";
 import { getContacts } from "../services/requests";
 
 export async function loader() {
@@ -13,20 +13,57 @@ export default function Root() {
       <div id="sidebar">
         <h1>React Router Contacts</h1>
         <div>
-          <form id="search-form" role="search">
-            <input
-              id="q"
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
-            />
-            <div id="search-spinner" aria-hidden hidden={true} />
-            <div className="sr-only" aria-live="polite"></div>
-          </form>
-          <form method="post">
-            <button type="submit">New</button>
-          </form>
+          <Form method="post" id="contact-form">
+            <p>
+              <span>Name</span>
+              <input
+                placeholder="First name"
+                aria-label="First name"
+                type="text"
+                name="first"
+                // defaultValue={contact?.first}
+              />
+              <input
+                placeholder="Last name"
+                aria-label="Last name"
+                type="text"
+                name="last"
+                // defaultValue={contact?.last}
+              />
+            </p>
+            <label>
+              <span>Email</span>
+              <input
+                type="text"
+                name="email"
+                placeholder="enter email"
+                // defaultValue={contact?.twitter}
+              />
+            </label>
+            <label>
+              <span>Avatar URL</span>
+              <input
+                placeholder="https://example.com/avatar.jpg"
+                aria-label="Avatar URL"
+                type="text"
+                name="avatar"
+                // defaultValue={contact?.avatar}
+              />
+            </label>
+            <label>
+              <span>Tags</span>
+              <input
+                aria-label="Tags"
+                type="text"
+                name="tag"
+                // defaultValue={contact?.avatar}
+              />
+            </label>
+            <p>
+              <button type="submit">Save</button>
+              <button type="button">Cancel</button>
+            </p>
+          </Form>
         </div>
       </div>
       <div>
