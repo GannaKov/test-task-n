@@ -18,17 +18,17 @@ export const getContacts = async () => {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    console.log(data.resources);
+
     return data.resources;
   } catch (error) {
     console.log("error", error);
   }
 };
-// get all contacts
+// get contact by id
 export const getContactById = async (id) => {
   try {
     let urlBackend = `/contact/${id}`;
-    console.log("token", TOKEN);
+
     const { data } = await instance.get(urlBackend, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -36,8 +36,27 @@ export const getContactById = async (id) => {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    console.log(data.resources);
+    console.log("data", data.resources);
     return data.resources;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+//create contact
+export const createContact = async (contactData) => {
+  console.log("contactData", contactData);
+  try {
+    let urlBackend = `/contact`;
+    const { data } = await instance.post(urlBackend, contactData, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        // Origin: "http://localhost:5173",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+
+    return data;
   } catch (error) {
     console.log("error", error);
   }

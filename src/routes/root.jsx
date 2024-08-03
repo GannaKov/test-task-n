@@ -1,9 +1,43 @@
-import { Form, Link, useLoaderData } from "react-router-dom";
-import { getContacts } from "../services/requests";
+import { Form, Link, useLoaderData, redirect } from "react-router-dom";
+import { createContact, getContacts } from "../services/requests";
 
 export async function loader() {
   const contacts = await getContacts();
   return { contacts };
+}
+
+export async function action({ request }) {
+  const formData = await request.formData();
+
+  const contactData = Object.fromEntries(formData);
+  const contactWithAdditionalFields = {
+    fields: {
+      email: [
+        {
+          value: contactData.email,
+        },
+      ],
+      "first name": [
+        {
+          value: contactData["first name"],
+        },
+      ],
+      "last name": [
+        {
+          value: contactData["last name"],
+        },
+      ],
+    },
+    record_type: "person",
+    privacy: {
+      edit: null,
+      read: null,
+    },
+    owner_id: null,
+  };
+  console.log("contactWithAdditionalFields ", contactWithAdditionalFields);
+  await createContact(contactWithAdditionalFields);
+  return redirect("/");
 }
 
 export default function Root() {
@@ -14,54 +48,34 @@ export default function Root() {
         <h1>React Router Contacts</h1>
         <div>
           <Form method="post" id="contact-form">
+            <label>First Name</label>
+            <input
+              placeholder="First name"
+              aria-label="First name"
+              type="text"
+              name="first name"
+              // defaultValue={contact?.first}
+            />
+            <label>Last Name</label>
+            <input
+              placeholder="Last name"
+              aria-label="Last name"
+              type="text"
+              name="last name"
+              // defaultValue={contact?.last}
+            />
+
+            <label>Email</label>
+            <span>Email</span>
+            <input
+              type="text"
+              name="email"
+              placeholder="enter email"
+              // defaultValue={contact?.twitter}
+            />
+
             <p>
-              <span>Name</span>
-              <input
-                placeholder="First name"
-                aria-label="First name"
-                type="text"
-                name="first"
-                // defaultValue={contact?.first}
-              />
-              <input
-                placeholder="Last name"
-                aria-label="Last name"
-                type="text"
-                name="last"
-                // defaultValue={contact?.last}
-              />
-            </p>
-            <label>
-              <span>Email</span>
-              <input
-                type="text"
-                name="email"
-                placeholder="enter email"
-                // defaultValue={contact?.twitter}
-              />
-            </label>
-            <label>
-              <span>Avatar URL</span>
-              <input
-                placeholder="https://example.com/avatar.jpg"
-                aria-label="Avatar URL"
-                type="text"
-                name="avatar"
-                // defaultValue={contact?.avatar}
-              />
-            </label>
-            <label>
-              <span>Tags</span>
-              <input
-                aria-label="Tags"
-                type="text"
-                name="tag"
-                // defaultValue={contact?.avatar}
-              />
-            </label>
-            <p>
-              <button type="submit">Save</button>
-              <button type="button">Cancel</button>
+              <button type="submit">Add Contact</button>
             </p>
           </Form>
         </div>
@@ -81,7 +95,10 @@ export default function Root() {
               contact.fields["first name"].length > 0
                 ? contact.fields["first name"][0].value
                 : "";
-            const email = contact.fields.email[0].value;
+            const email =
+              contact.fields.email && contact.fields.email.length > 0
+                ? contact.fields.email[0].value
+                : "";
             const avatar =
               contact.avatar_url ||
               `https://robohash.org/${contact.id}.png?size=200x200`;
