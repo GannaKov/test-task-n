@@ -61,3 +61,23 @@ export const createContact = async (contactData) => {
     console.log("error", error);
   }
 };
+
+//DELETE https://live.devnimble.com/api/v1/contact/${contactId}
+//delete contact
+export const deleteContact = async (contactId) => {
+  try {
+    console.log("contactId in req", contactId);
+    let urlBackend = `/contact/${contactId}`;
+    const { data } = await instance.delete(urlBackend, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        // Origin: "http://localhost:5173",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    console.log("data delete", data);
+    return data;
+  } catch (error) {
+    console.log("error", error);
+  }
+};

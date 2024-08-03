@@ -42,6 +42,7 @@ export async function action({ request }) {
 
 export default function Root() {
   const { contacts } = useLoaderData();
+  const handleDeleteClick = () => {};
   return (
     <>
       <div id="sidebar">
@@ -105,7 +106,24 @@ export default function Root() {
             const tags = contact.tags;
             return (
               <li key={contact.id}>
+                <Form
+                  method="post"
+                  action={`destroy/${contact.id}`}
+                  onSubmit={(event) => {
+                    if (
+                      !confirm("Please confirm you want to delete this record.")
+                    ) {
+                      event.preventDefault();
+                    }
+                  }}
+                >
+                  <button type="submit">Delete</button>
+                </Form>
                 <Link to={`contact/${contact.id}`}>
+                  {/* <button type="button" onClick={handleDeleteClick}>
+                    Delete
+                  </button> */}
+
                   <img
                     src={avatar}
                     alt={`${contact.fields["last name"]?.value}${contact.fields["first name"]?.value}`.trim()}

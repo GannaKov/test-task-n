@@ -5,6 +5,7 @@ import Root, {
   loader as rootLoader,
   action as createAction,
 } from "./routes/root";
+import { action as destroyAction } from "./routes/destroy";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     loader: rootLoader,
     action: createAction,
+  },
+  {
+    path: "/destroy/:contactId",
+    action: destroyAction,
   },
   {
     path: "contact/:contactId",
