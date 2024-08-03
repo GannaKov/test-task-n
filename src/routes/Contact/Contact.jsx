@@ -24,7 +24,6 @@ export default function Contact() {
   const [tags, setTags] = useState(
     contact.tags?.map((tagObj) => tagObj.tag) || []
   );
-  console.log("contactTags", tags);
 
   const lastName = contact.fields?.["last name"]?.[0]?.value || "";
 
@@ -37,14 +36,11 @@ export default function Contact() {
 
   const handleAddTag = async (event) => {
     event.preventDefault();
-    //const formData = new FormData(event.target);
-    //const newTag = formData.get("tag");
 
     const newTagsArray = newTags
       .split(/[^a-zA-Z0-9]+/)
       .filter((tag) => tag.trim() !== "");
 
-    // Добавляем новые теги
     const updatedTags = [...tags, ...newTagsArray];
     setTags(updatedTags);
 
@@ -52,19 +48,15 @@ export default function Contact() {
     await addTags(contact.id, tagsArr);
     setNewTags("");
   };
+
   return (
     <div id="contact">
       {contact ? (
         <div>
-          <img
-            key={contact.avatar_url}
-            src={
-              contact.avatar_url ||
-              `https://robohash.org/${contact.id}.png?size=200x200`
-            }
-          />
+          <img src={avatar} alt={`${firstName} ${lastName}`} />
           <p>{firstName}</p>
           <p>{lastName}</p>
+          <p>{email}</p>
           <div>
             <h3>Tags</h3>
             {tags.map((tag, index) => (

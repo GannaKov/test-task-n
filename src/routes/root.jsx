@@ -1,5 +1,6 @@
 import { Form, Link, useLoaderData, redirect } from "react-router-dom";
 import { createContact, getContacts } from "../services/requests";
+import ContactsList from "../components/ContactsList/ContactsList";
 
 export async function loader() {
   const contacts = await getContacts();
@@ -43,7 +44,6 @@ export async function action({ request }) {
 export default function Root() {
   const { contacts } = useLoaderData();
 
-  //const handleDeleteClick = () => {};
   return (
     <>
       <div id="sidebar">
@@ -56,7 +56,6 @@ export default function Root() {
               aria-label="First name"
               type="text"
               name="first name"
-              // defaultValue={contact?.first}
             />
             <label>Last Name</label>
             <input
@@ -83,27 +82,19 @@ export default function Root() {
         </div>
       </div>
       <div>
-        <ul>
+        <ContactsList contacts={contacts} />
+        {/* <ul>
           {contacts.map((contact) => {
-            // const lastName = contact.fields["last name"][0]?.value || "";
-            const lastName =
-              contact.fields["last name"] &&
-              contact.fields["last name"].length > 0
-                ? contact.fields["last name"][0].value
-                : "";
-            // const firstName = contact.fields["first name"][0].value || "";
-            const firstName =
-              contact.fields["first name"] &&
-              contact.fields["first name"].length > 0
-                ? contact.fields["first name"][0].value
-                : "";
-            const email =
-              contact.fields.email && contact.fields.email.length > 0
-                ? contact.fields.email[0].value
-                : "";
+            const lastName = contact.fields?.["last name"]?.[0]?.value || "";
+
+            const firstName = contact.fields?.["first name"]?.[0]?.value || "";
+
+            const email = contact.fields?.email?.[0]?.value || "";
+
             const avatar =
               contact.avatar_url ||
               `https://robohash.org/${contact.id}.png?size=200x200`;
+
             const tags = contact.tags;
             return (
               <li key={contact.id}>
@@ -121,10 +112,6 @@ export default function Root() {
                   <button type="submit">Delete</button>
                 </Form>
                 <Link to={`contact/${contact.id}`}>
-                  {/* <button type="button" onClick={handleDeleteClick}>
-                    Delete
-                  </button> */}
-
                   <img
                     src={avatar}
                     alt={`${contact.fields["last name"]?.value}${contact.fields["first name"]?.value}`.trim()}
@@ -143,7 +130,7 @@ export default function Root() {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
       </div>
     </>
   );
