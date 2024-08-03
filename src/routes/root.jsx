@@ -42,7 +42,8 @@ export async function action({ request }) {
 
 export default function Root() {
   const { contacts } = useLoaderData();
-  const handleDeleteClick = () => {};
+
+  //const handleDeleteClick = () => {};
   return (
     <>
       <div id="sidebar">

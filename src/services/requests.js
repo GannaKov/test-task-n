@@ -81,3 +81,23 @@ export const deleteContact = async (contactId) => {
     console.log("error", error);
   }
 };
+
+// add teags https://live.devnimble.com/api/v1/contacts/66ae7f295290355bdf24eb36/tags
+
+export const addTags = async (contactId, tagsArr) => {
+  console.log("tagsArr", tagsArr);
+  try {
+    let urlBackend = `/contacts/${contactId}/tags`;
+    const { data } = await instance.put(urlBackend, tagsArr, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        // Origin: "http://localhost:5173",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    console.log("tags data", data);
+    return data;
+  } catch (error) {
+    console.log("error", error);
+  }
+};

@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
-import { getContactById } from "../../services/requests";
+import { addTags, getContactById } from "../../services/requests";
+import { useFetcher } from "react-router-dom";
 
 export async function loader({ params }) {
   // console.log("params", params);
@@ -7,12 +8,22 @@ export async function loader({ params }) {
   return { result };
 }
 
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  const tag = formData.get("tag");
+  const tagsArr = { tags: [tag] };
+  console.log("tag in formData", tagsArr);
+  return addTags(params.contactId, tagsArr);
+}
+
 export default function Contact() {
+  const fetcher = useFetcher();
   const { result } = useLoaderData();
   const contact = result?.length > 0 ? result[0] : [];
+  const contactTags = contact.tags;
 
-  console.log("result", result);
-  console.log("contact", contact);
+  console.log("contactTags", contactTags);
+  //console.log("contact", contact);
   const lastName =
     contact.fields["last name"] && contact.fields["last name"].length > 0
       ? contact.fields["last name"][0].value
@@ -43,6 +54,17 @@ export default function Contact() {
           />
           <p>{firstName}</p>
           <p>{lastName}</p>
+          <fetcher.Form method="put">
+            <input
+              placeholder="Add new Tag"
+              aria-label="Add new Tag"
+              type="text"
+              name="tag"
+              // defaultValue={contact?.first}
+            />
+
+            <button type="submit">Add Tag</button>
+          </fetcher.Form>
         </div>
       ) : (
         <p> No data</p>

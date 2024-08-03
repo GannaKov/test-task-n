@@ -9,7 +9,10 @@ import { action as destroyAction } from "./routes/destroy";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import Contact, { loader as contactLoader } from "./routes/Contact/Contact";
+import Contact, {
+  loader as contactLoader,
+  action as contactAction,
+} from "./routes/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,7 @@ const router = createBrowserRouter([
     element: <Contact />,
     errorElement: <ErrorPage />,
     loader: contactLoader,
+    action: contactAction,
   },
 ]);
 
