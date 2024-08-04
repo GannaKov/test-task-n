@@ -47,43 +47,14 @@ export default function Root() {
   const { contacts } = useLoaderData();
 
   return (
-    <>
-      <div id="sidebar">
-        <h1>Contacts</h1>
+    <div className="pageWrapper">
+      <div className="section">
         <CreateForm />
-        {/* <Form method="post" id="contact-form">
-          <label>First Name</label>
-          <input
-            placeholder="First name"
-            aria-label="First name"
-            type="text"
-            name="first name"
-          />
-          <label>Last Name</label>
-          <input
-            placeholder="Last name"
-            aria-label="Last name"
-            type="text"
-            name="last name"
-            // defaultValue={contact?.last}
-          />
+      </div>
 
-          <label>Email</label>
-          <span>Email</span>
-          <input
-            type="text"
-            name="email"
-            placeholder="enter email"
-            // defaultValue={contact?.twitter}
-          />
-
-          <p>
-            <button type="submit">Add Contact</button>
-          </p>
-        </Form> */}
-
+      <div className="section">
         <ContactsList contacts={contacts} />
       </div>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,28 @@
+.cardWrp {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+
+  color: black;
+}
+.infoWrp {
+  element.style {
+    overflow: hidden;
+  }
+}
+.infoItem:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+.tagsWrp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tagsItem {
+  background-color: rgba(166, 166, 166, 1);
+
+  padding: 0 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+}

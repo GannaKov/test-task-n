@@ -1,5 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Form, Link } from "react-router-dom";
+import Card from "@mui/material/Card";
+import { colors } from "@mui/material";
+import styles from "./ContactCard.module.css";
+import Avatar from "@mui/material/Avatar";
 
 const ContactCard = ({ contact }) => {
   const lastName = contact.fields?.["last name"]?.[0]?.value || "";
@@ -13,8 +17,36 @@ const ContactCard = ({ contact }) => {
 
   const tags = contact.tags;
   return (
-    <div>
-      <Form
+    <Card
+      //   variant="outlined"
+      sx={{ backgroundColor: "#EDEDED", padding: "0.5rem 2rem 0.5rem 1rem" }}
+    >
+      <Link to={`contact/${contact.id}`} className={styles.cardWrp}>
+        <Avatar
+          src={avatar}
+          alt={`${contact.fields["last name"]?.value}${contact.fields["first name"]?.value}`.trim()}
+          sx={{ width: 59, height: 59, border: 1 }}
+        />
+        <ul className={styles.infoWrp}>
+          <li className={styles.infoItem}>
+            {firstName && <span>{firstName}&nbsp;</span>}
+            {lastName && <span>{lastName}</span>}
+          </li>
+          <li className={styles.infoItem}>{email && <p>{email}</p>}</li>
+          <li className={styles.infoItem}>
+            {tags.length > 0 && (
+              <div className={styles.tagsWrp}>
+                {tags.map((tag) => (
+                  <div className={styles.tagsItem} key={tag.id}>
+                    {tag.tag}
+                  </div>
+                ))}
+              </div>
+            )}
+          </li>
+        </ul>
+      </Link>
+      {/* <Form
         method="post"
         action={`destroy/${contact.id}`}
         onSubmit={(event) => {
@@ -23,25 +55,9 @@ const ContactCard = ({ contact }) => {
           }
         }}
       >
-        <button type="submit">Delete</button>
-      </Form>
-      <Link to={`contact/${contact.id}`}>
-        <img
-          src={avatar}
-          alt={`${contact.fields["last name"]?.value}${contact.fields["first name"]?.value}`.trim()}
-        />
-        {email && <p>{email}</p>}
-        {firstName && <p>{firstName}</p>}
-        {lastName && <p>{lastName}</p>}
-        {tags.length > 0 && (
-          <p>
-            {tags.map((tag) => (
-              <span key={tag.id}>{tag.tag}</span>
-            ))}
-          </p>
-        )}
-      </Link>
-    </div>
+        <button type="submit">X</button>
+      </Form> */}
+    </Card>
   );
 };
 

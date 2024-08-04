@@ -1,13 +1,13 @@
-import "./App.css";
+// import "./App.css";
 
-import Example from "./components/Example/Example";
+// import Example from "./components/Example/Example";
 
-const App = () => {
-  return (
-    <div>
-      <Example />
-    </div>
-  );
-};
+// const App = () => {
+//   return (
+//     <div>
+//       <Example />
+//     </div>
+//   );
+// };
 
-export default App;
+// export default App;

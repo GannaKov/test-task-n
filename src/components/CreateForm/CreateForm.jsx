@@ -1,6 +1,7 @@
 //import { Form } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
+import styles from "./CreateForm.module.css";
 import * as Yup from "yup";
 import {
   Button,
@@ -25,124 +26,130 @@ const validationSchema = Yup.object({
 const CreateForm = () => {
   const navigate = useNavigate();
   return (
-    <Formik
-      initialValues={{ firstName: "", lastName: "", email: "" }}
-      validationSchema={validationSchema}
-      onSubmit={async (values, { setSubmitting, resetForm }) => {
-        const contactWithAdditionalFields = {
-          fields: {
-            email: [
-              {
-                value: values.email,
-              },
-            ],
-            "first name": [
-              {
-                value: values.firstName,
-              },
-            ],
-            "last name": [
-              {
-                value: values.lastName,
-              },
-            ],
-          },
-          record_type: "person",
-          privacy: {
-            edit: null,
-            read: null,
-          },
-          owner_id: null,
-        };
-        console.log(
-          "contactWithAdditionalFields ",
-          contactWithAdditionalFields
-        );
-        await createContact(contactWithAdditionalFields);
-        setSubmitting(false);
-        resetForm();
-        navigate("/", { replace: true });
-      }}
-    >
-      {({ errors, touched, isSubmitting, handleChange, handleBlur }) => (
-        <Form>
-          <div style={{ marginBottom: "16px" }}>
-            <Field name="firstName">
-              {({ field }) => (
-                <FormControl
-                  fullWidth
-                  error={touched.firstName && !!errors.firstName}
-                >
-                  <InputLabel htmlFor="firstName">First Name</InputLabel>
-                  <Input
-                    id="firstName"
-                    placeholder="First name"
-                    {...field}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {/* <FormHelperText>{errors.firstName}</FormHelperText> */}
-                  <FormHelperText>
-                    {touched.firstName && errors.firstName}
-                  </FormHelperText>
-                </FormControl>
-              )}
-            </Field>
-          </div>
+    <div className="container">
+      <h1 className={styles.sectionTitle}>Create Contact</h1>
+      <Formik
+        initialValues={{ firstName: "", lastName: "", email: "" }}
+        validationSchema={validationSchema}
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
+          const contactWithAdditionalFields = {
+            fields: {
+              email: [
+                {
+                  value: values.email,
+                },
+              ],
+              "first name": [
+                {
+                  value: values.firstName,
+                },
+              ],
+              "last name": [
+                {
+                  value: values.lastName,
+                },
+              ],
+            },
+            record_type: "person",
+            privacy: {
+              edit: null,
+              read: null,
+            },
+            owner_id: null,
+          };
+          console.log(
+            "contactWithAdditionalFields ",
+            contactWithAdditionalFields
+          );
+          await createContact(contactWithAdditionalFields);
+          setSubmitting(false);
+          resetForm();
+          navigate("/", { replace: true });
+        }}
+      >
+        {({ errors, touched, isSubmitting, handleChange, handleBlur }) => (
+          <Form className={styles.formWrp}>
+            <div style={{ marginBottom: "16px" }}>
+              <Field name="firstName">
+                {({ field }) => (
+                  <FormControl
+                    fullWidth
+                    error={touched.firstName && !!errors.firstName}
+                  >
+                    <InputLabel htmlFor="firstName">First Name</InputLabel>
+                    <Input
+                      id="firstName"
+                      placeholder="First name"
+                      {...field}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {/* <FormHelperText>{errors.firstName}</FormHelperText> */}
+                    <FormHelperText>
+                      {touched.firstName && errors.firstName}
+                    </FormHelperText>
+                  </FormControl>
+                )}
+              </Field>
+            </div>
 
-          <div style={{ marginBottom: "16px" }}>
-            <Field name="lastName">
-              {({ field }) => (
-                <FormControl
-                  fullWidth
-                  error={touched.lastName && !!errors.lastName}
-                >
-                  <InputLabel htmlFor="lastName">Last Name</InputLabel>
-                  <Input
-                    id="lastName"
-                    placeholder="Last name"
-                    {...field}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {/* <FormHelperText>{errors.lastName}</FormHelperText> */}
-                  <FormHelperText>
-                    {touched.lastName && errors.lastName}
-                  </FormHelperText>
-                </FormControl>
-              )}
-            </Field>
-          </div>
+            <div style={{ marginBottom: "16px" }}>
+              <Field name="lastName">
+                {({ field }) => (
+                  <FormControl
+                    fullWidth
+                    error={touched.lastName && !!errors.lastName}
+                  >
+                    <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                    <Input
+                      id="lastName"
+                      placeholder="Last name"
+                      {...field}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {/* <FormHelperText>{errors.lastName}</FormHelperText> */}
+                    <FormHelperText>
+                      {touched.lastName && errors.lastName}
+                    </FormHelperText>
+                  </FormControl>
+                )}
+              </Field>
+            </div>
 
-          <div style={{ marginBottom: "16px" }}>
-            <Field name="email">
-              {({ field }) => (
-                <FormControl fullWidth error={touched.email && !!errors.email}>
-                  <InputLabel htmlFor="email">Email</InputLabel>
-                  <Input
-                    id="email"
-                    placeholder="Enter email"
-                    {...field}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  <FormHelperText>{errors.email}</FormHelperText>
-                </FormControl>
-              )}
-            </Field>
-          </div>
+            <div style={{ marginBottom: "16px" }}>
+              <Field name="email">
+                {({ field }) => (
+                  <FormControl
+                    fullWidth
+                    error={touched.email && !!errors.email}
+                  >
+                    <InputLabel htmlFor="email">Email</InputLabel>
+                    <Input
+                      id="email"
+                      placeholder="Enter email"
+                      {...field}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    <FormHelperText>{errors.email}</FormHelperText>
+                  </FormControl>
+                )}
+              </Field>
+            </div>
 
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={isSubmitting}
-          >
-            Add Contact
-          </Button>
-        </Form>
-      )}
-    </Formik>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting}
+            >
+              Add Contact
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
