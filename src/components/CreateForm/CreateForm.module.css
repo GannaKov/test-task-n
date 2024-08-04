@@ -1,9 +1,11 @@
 .sectionTitle {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 1rem;
 }
 .formWrp {
   width: 80%;
   max-width: 500px;
+}
+@media (min-width: 1024px) {
 }

@@ -9,7 +9,6 @@ body {
 
   font-family: "Roboto";
   background-color: rgba(255, 255, 255, 1);
-  
 }
 #root {
   width: 100%;
@@ -44,6 +43,15 @@ img {
 }
 .pageWrapper {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 1024px) {
+  .stickyPage {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  /* .stickyPage {*/
 }
 .section {
   padding-top: 2rem;
@@ -51,6 +59,16 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+@media (min-width: 1024px) {
+  .section.sticky {
+    position: sticky;
+    justify-content: flex-start;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    width: 45%;
+  }
 }
 .container {
   width: 100%;
@@ -65,9 +83,11 @@ img {
   .container {
     padding: 0 2rem;
   }
+  .container.stickyContainer {
+    align-items: flex-end;
+  }
 }
 .MuiCard-root.MuiPaper-root {
   box-shadow: none;
   width: 100%;
 }
-

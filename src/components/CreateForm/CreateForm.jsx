@@ -27,7 +27,7 @@ const validationSchema = Yup.object({
 const CreateForm = () => {
   const navigate = useNavigate();
   return (
-    <div className="container">
+    <div className="container stickyContainer">
       <Formik
         initialValues={{ firstName: "", lastName: "", email: "" }}
         validationSchema={validationSchema}

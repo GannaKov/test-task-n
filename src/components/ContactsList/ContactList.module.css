@@ -2,8 +2,13 @@
   max-width: 500px;
   width: 100%;
 }
+@media (min-width: 1024px) {
+  .contactListWrp {
+    width: 800px;
+  }
+}
 .sectionTitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 1rem;
 }
