@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import { addTags } from "../../services/requests";
 
 import { useState } from "react";
@@ -9,12 +9,16 @@ import styles from "./Contact.module.css";
 import ButtonComponent from "../../components/Shared/ButtonComponent";
 import GoBack from "../../components/Shared/GoBack/GoBack";
 
+import CircularProgress from "@mui/material/CircularProgress";
+
 // export async function loader({ params }) {
 //   const result = await getContactById(params.contactId);
 //   return { result };
 // }
 
 export default function Contact() {
+  const navigation = useNavigation();
+  console.log("navigation", navigation.state);
   const { result } = useLoaderData();
   const contact = result?.length > 0 ? result[0] : [];
 
@@ -44,7 +48,11 @@ export default function Contact() {
         <div style={{ marginBottom: "2rem" }}>
           <GoBack state="/" />
         </div>
-
+        {navigation.state === "loading" ? (
+          <div>
+            <CircularProgress />
+          </div>
+        ) : null}
         {contact ? (
           <div className={`container ${styles.contactContainer}`}>
             <SingleContactCard contact={contact} tags={tags} />
