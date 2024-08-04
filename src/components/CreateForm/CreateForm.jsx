@@ -57,17 +57,14 @@ const CreateForm = () => {
             },
             owner_id: null,
           };
-          console.log(
-            "contactWithAdditionalFields ",
-            contactWithAdditionalFields
-          );
+
           await createContact(contactWithAdditionalFields);
           setSubmitting(false);
           resetForm();
           navigate("/", { replace: true });
         }}
       >
-        {({ errors, touched, isSubmitting, handleChange, handleBlur }) => (
+        {({ errors, touched, handleChange, handleBlur }) => (
           <Form className={styles.formWrp}>
             <h3 className={styles.sectionTitle}>Create Contact</h3>
             <div style={{ marginBottom: "16px" }}>
@@ -81,12 +78,11 @@ const CreateForm = () => {
                     <OutlinedInput
                       id="firstName"
                       size="small"
-                      //   placeholder="First name"
                       {...field}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {/* <FormHelperText>{errors.firstName}</FormHelperText> */}
+
                     <FormHelperText>
                       {touched.firstName && errors.firstName}
                     </FormHelperText>
@@ -106,12 +102,11 @@ const CreateForm = () => {
                     <OutlinedInput
                       size="small"
                       id="lastName"
-                      //   placeholder="Last name"
                       {...field}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {/* <FormHelperText>{errors.lastName}</FormHelperText> */}
+
                     <FormHelperText>
                       {touched.lastName && errors.lastName}
                     </FormHelperText>
@@ -131,7 +126,6 @@ const CreateForm = () => {
                     <OutlinedInput
                       size="small"
                       id="email"
-                      //   placeholder="Enter email"
                       {...field}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -142,59 +136,12 @@ const CreateForm = () => {
               </Field>
             </div>
 
-            {/* <Button
-              type="submit"
-              // color="primary"
-              disabled={isSubmitting}
-              variant="outlined"
-              sx={{
-                color: "rgba(0, 0, 0, 0.6)",
-                borderColor: "rgba(0, 0, 0, 0.6)",
-              }}
-            >
-              Add Contact
-            </Button> */}
-            <ButtonComponent text="Add Contact" width="100%" />
+            <ButtonComponent text="Add Contact" width="100%" type="submit" />
           </Form>
         )}
       </Formik>
     </div>
   );
 };
-
-// const CreateForm = () => {
-//   return (
-//     <Form method="post" id="contact-form">
-//       <label>First Name</label>
-//       <input
-//         placeholder="First name"
-//         aria-label="First name"
-//         type="text"
-//         name="first name"
-//       />
-//       <label>Last Name</label>
-//       <input
-//         placeholder="Last name"
-//         aria-label="Last name"
-//         type="text"
-//         name="last name"
-//         // defaultValue={contact?.last}
-//       />
-
-//       <label>Email</label>
-//       <span>Email</span>
-//       <input
-//         type="text"
-//         name="email"
-//         placeholder="enter email"
-//         // defaultValue={contact?.twitter}
-//       />
-
-//       <p>
-//         <button type="submit">Add Contact</button>
-//       </p>
-//     </Form>
-//   );
-// };
 
 export default CreateForm;

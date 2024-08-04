@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
 import { Button } from "@mui/material";
 
-const ButtonComponent = ({ text, width, children }) => {
+const ButtonComponent = ({ text, width, children, type }) => {
   return (
     <Button
-      type="submit"
-      // color="primary"
-
+      type={type}
       variant="outlined"
       sx={{
         color: "rgba(0, 0, 0, 0.6)",

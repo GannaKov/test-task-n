@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Form, Link } from "react-router-dom";
 import Card from "@mui/material/Card";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import styles from "./ContactCard.module.css";
 import Avatar from "@mui/material/Avatar";
@@ -18,7 +19,6 @@ const ContactCard = ({ contact }) => {
   const tags = contact.tags;
   return (
     <Card
-      //   variant="outlined"
       sx={{
         backgroundColor: "#EDEDED",
         padding: "1rem 2rem 1rem 1rem",
@@ -60,7 +60,7 @@ const ContactCard = ({ contact }) => {
         }}
       >
         <button className={styles.deleteBtn} type="submit">
-          X
+          <HighlightOffIcon />
         </button>
       </Form>
     </Card>

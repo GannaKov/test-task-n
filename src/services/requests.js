@@ -10,7 +10,7 @@ const instance = axios.create({ baseURL: BASEURL });
 export const getContacts = async () => {
   try {
     let urlBackend = "/contacts?record_type=person&sort=created:desc";
-    console.log("token", TOKEN);
+   
     const { data } = await instance.get(urlBackend, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -36,7 +36,7 @@ export const getContactById = async (id) => {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    console.log("data", data.resources);
+  
     return data.resources;
   } catch (error) {
     console.log("error", error);
@@ -45,7 +45,7 @@ export const getContactById = async (id) => {
 
 //create contact
 export const createContact = async (contactData) => {
-  console.log("contactData", contactData);
+  
   try {
     let urlBackend = `/contact`;
     const { data } = await instance.post(urlBackend, contactData, {
@@ -66,7 +66,7 @@ export const createContact = async (contactData) => {
 //delete contact
 export const deleteContact = async (contactId) => {
   try {
-    console.log("contactId in req", contactId);
+
     let urlBackend = `/contact/${contactId}`;
     const { data } = await instance.delete(urlBackend, {
       headers: {
@@ -75,7 +75,7 @@ export const deleteContact = async (contactId) => {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    console.log("data delete", data);
+    
     return data;
   } catch (error) {
     console.log("error", error);
@@ -85,7 +85,7 @@ export const deleteContact = async (contactId) => {
 // add teags https://live.devnimble.com/api/v1/contacts/66ae7f295290355bdf24eb36/tags
 
 export const addTags = async (contactId, tagsArr) => {
-  console.log("tagsArr", tagsArr);
+
   try {
     let urlBackend = `/contacts/${contactId}/tags`;
     const { data } = await instance.put(urlBackend, tagsArr, {
@@ -95,7 +95,7 @@ export const addTags = async (contactId, tagsArr) => {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    console.log("tags data", data);
+   
     return data;
   } catch (error) {
     console.log("error", error);

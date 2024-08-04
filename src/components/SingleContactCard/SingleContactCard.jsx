@@ -6,7 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import TagsBlock from "../Shared/TagsBlock/TagsBlock";
 
 const SingleContactCard = ({ contact, tags }) => {
-  console.log("tags in comp", tags);
+  
   const lastName = contact.fields?.["last name"]?.[0]?.value || "";
 
   const firstName = contact.fields?.["first name"]?.[0]?.value || "";
@@ -17,7 +17,7 @@ const SingleContactCard = ({ contact, tags }) => {
     contact.avatar_url || `https://robohash.org/${contact.id}.png?size=200x200`;
   return (
     <Card
-      //   variant="outlined"
+     
       sx={{
         backgroundColor: "#FFFFFF",
         padding: "1rem 0",

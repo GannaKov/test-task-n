@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { addTags, getContactById } from "../../services/requests";
+import { addTags } from "../../services/requests";
 
 import { useState } from "react";
 import SingleContactCard from "../../components/SingleContactCard/SingleContactCard";
@@ -9,17 +9,9 @@ import styles from "./Contact.module.css";
 import ButtonComponent from "../../components/Shared/ButtonComponent";
 import GoBack from "../../components/Shared/GoBack/GoBack";
 
-export async function loader({ params }) {
-  const result = await getContactById(params.contactId);
-  return { result };
-}
-
-// export async function action({ request, params }) {
-//   const formData = await request.formData();
-//   const tag = formData.get("tag");
-//   const tagsArr = { tags: [tag] };
-//   console.log("tag in formData", tagsArr);
-//   return addTags(params.contactId, tagsArr);
+// export async function loader({ params }) {
+//   const result = await getContactById(params.contactId);
+//   return { result };
 // }
 
 export default function Contact() {
@@ -30,7 +22,7 @@ export default function Contact() {
   const [tags, setTags] = useState(
     contact.tags?.map((tagObj) => tagObj.tag) || []
   );
-  console.log("tags in page", tags);
+
   const handleAddTag = async (event) => {
     event.preventDefault();
 
@@ -61,14 +53,6 @@ export default function Contact() {
               onSubmit={handleAddTag}
               className={styles.addTagsForm}
             >
-              {/* <input
-                placeholder="Add new Tag"
-                aria-label="Add new Tag"
-                type="text"
-                name="tag"
-                value={newTags}
-                onChange={(e) => setNewTags(e.target.value)}
-              /> */}
               <OutlinedInput
                 placeholder="Add new Tag"
                 aria-label="Add new Tag"
@@ -77,9 +61,10 @@ export default function Contact() {
                 fullWidth={true}
                 size="small"
                 onChange={(e) => setNewTags(e.target.value)}
+                value={newTags}
               />
-              {/* <button type="submit">Add Tag</button> */}
-              <ButtonComponent text="Add Tag" width="100%" />
+
+              <ButtonComponent text="Add Tag" width="100%" type="submit" />
             </form>
           </div>
         ) : (
