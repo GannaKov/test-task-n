@@ -8,10 +8,10 @@ import {
   FormControl,
   FormHelperText,
   InputLabel,
-  Input,
   OutlinedInput,
 } from "@mui/material";
 import { createContact } from "../../services/requests";
+import BottomComponent from "../Shared/BottomComponent";
 const validationSchema = Yup.object({
   firstName: Yup.string().required("First name is required"),
   lastName: Yup.string().required("Last name is required"),
@@ -80,6 +80,7 @@ const CreateForm = () => {
                   >
                     <OutlinedInput
                       id="firstName"
+                      size="small"
                       //   placeholder="First name"
                       {...field}
                       onChange={handleChange}
@@ -103,6 +104,7 @@ const CreateForm = () => {
                     error={touched.lastName && !!errors.lastName}
                   >
                     <OutlinedInput
+                      size="small"
                       id="lastName"
                       //   placeholder="Last name"
                       {...field}
@@ -127,6 +129,7 @@ const CreateForm = () => {
                     error={touched.email && !!errors.email}
                   >
                     <OutlinedInput
+                      size="small"
                       id="email"
                       //   placeholder="Enter email"
                       {...field}
@@ -139,14 +142,19 @@ const CreateForm = () => {
               </Field>
             </div>
 
-            <Button
+            {/* <Button
               type="submit"
-              variant="contained"
-              color="primary"
+              // color="primary"
               disabled={isSubmitting}
+              variant="outlined"
+              sx={{
+                color: "rgba(0, 0, 0, 0.6)",
+                borderColor: "rgba(0, 0, 0, 0.6)",
+              }}
             >
               Add Contact
-            </Button>
+            </Button> */}
+            <BottomComponent text="Add Contact" />
           </Form>
         )}
       </Formik>

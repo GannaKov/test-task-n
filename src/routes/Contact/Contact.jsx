@@ -2,6 +2,10 @@ import { useLoaderData } from "react-router-dom";
 import { addTags, getContactById } from "../../services/requests";
 
 import { useState } from "react";
+import SingleContactCard from "../../components/SingleContactCard/SingleContactCard";
+import { Button, OutlinedInput } from "@mui/material";
+import styles from "./Contact.module.css";
+import BottomComponent from "../../components/Shared/BottomComponent";
 
 export async function loader({ params }) {
   const result = await getContactById(params.contactId);
@@ -24,16 +28,7 @@ export default function Contact() {
   const [tags, setTags] = useState(
     contact.tags?.map((tagObj) => tagObj.tag) || []
   );
-
-  const lastName = contact.fields?.["last name"]?.[0]?.value || "";
-
-  const firstName = contact.fields?.["first name"]?.[0]?.value || "";
-
-  const email = contact.fields?.email?.[0]?.value || "";
-
-  const avatar =
-    contact.avatar_url || `https://robohash.org/${contact.id}.png?size=200x200`;
-
+  console.log("tags in page", tags);
   const handleAddTag = async (event) => {
     event.preventDefault();
 
@@ -50,35 +45,41 @@ export default function Contact() {
   };
 
   return (
-    <div id="contact">
-      {contact ? (
-        <div>
-          <img src={avatar} alt={`${firstName} ${lastName}`} />
-          <p>{firstName}</p>
-          <p>{lastName}</p>
-          <p>{email}</p>
-          <div>
-            <h3>Tags</h3>
-            {tags.map((tag, index) => (
-              <span key={index + tag}>{tag}</span>
-            ))}
+    <div className="pageWrapper">
+      <div className="section">
+        {contact ? (
+          <div className={`container ${styles.contactContainer}`}>
+            <SingleContactCard contact={contact} tags={tags} />
+            <form
+              method="post"
+              onSubmit={handleAddTag}
+              className={styles.addTagsForm}
+            >
+              {/* <input
+                placeholder="Add new Tag"
+                aria-label="Add new Tag"
+                type="text"
+                name="tag"
+                value={newTags}
+                onChange={(e) => setNewTags(e.target.value)}
+              /> */}
+              <OutlinedInput
+                placeholder="Add new Tag"
+                aria-label="Add new Tag"
+                type="text"
+                name="tag"
+                fullWidth={true}
+                size="small"
+                onChange={(e) => setNewTags(e.target.value)}
+              />
+              {/* <button type="submit">Add Tag</button> */}
+              <BottomComponent text="Add Tag" />
+            </form>
           </div>
-          <form method="post" onSubmit={handleAddTag}>
-            <input
-              placeholder="Add new Tag"
-              aria-label="Add new Tag"
-              type="text"
-              name="tag"
-              value={newTags}
-              onChange={(e) => setNewTags(e.target.value)}
-            />
-
-            <button type="submit">Add Tag</button>
-          </form>
-        </div>
-      ) : (
-        <p> No data</p>
-      )}
+        ) : (
+          <p> No data</p>
+        )}
+      </div>
     </div>
   );
 }

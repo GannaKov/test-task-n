@@ -89,4 +89,8 @@ img {
 }
 .MuiCard-root.MuiPaper-root {
   box-shadow: none;
+  width: 100%;
 }
+/* .MuiOutlinedInput-root {
+  width: 100%;
+} */

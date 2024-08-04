@@ -1,0 +1,21 @@
+.cardWrp {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  color: black;
+  margin-bottom: 2rem;
+}
+.infoWrp {
+  element.style {
+    overflow: hidden;
+  }
+}
+.infoItem:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+.sectionTitle {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}

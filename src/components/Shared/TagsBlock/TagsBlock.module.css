@@ -1,0 +1,12 @@
+.tagsWrp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tagsItem {
+  background-color: rgba(166, 166, 166, 1);
+
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+}
