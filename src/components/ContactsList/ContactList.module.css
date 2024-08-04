@@ -1,6 +1,14 @@
+.contactListWrp {
+  max-width: 500px;
+  width: 100%;
+}
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
 .contactListItem {
   width: 100%;
-  max-width: 500px;
 }
 .contactListItem:not(:last-child) {
   margin-bottom: 1rem;

@@ -9,6 +9,7 @@ import {
   FormHelperText,
   InputLabel,
   Input,
+  OutlinedInput,
 } from "@mui/material";
 import { createContact } from "../../services/requests";
 const validationSchema = Yup.object({
@@ -27,7 +28,6 @@ const CreateForm = () => {
   const navigate = useNavigate();
   return (
     <div className="container">
-      <h1 className={styles.sectionTitle}>Create Contact</h1>
       <Formik
         initialValues={{ firstName: "", lastName: "", email: "" }}
         validationSchema={validationSchema}
@@ -69,17 +69,18 @@ const CreateForm = () => {
       >
         {({ errors, touched, isSubmitting, handleChange, handleBlur }) => (
           <Form className={styles.formWrp}>
+            <h3 className={styles.sectionTitle}>Create Contact</h3>
             <div style={{ marginBottom: "16px" }}>
+              <InputLabel htmlFor="firstName">First Name</InputLabel>
               <Field name="firstName">
                 {({ field }) => (
                   <FormControl
                     fullWidth
                     error={touched.firstName && !!errors.firstName}
                   >
-                    <InputLabel htmlFor="firstName">First Name</InputLabel>
-                    <Input
+                    <OutlinedInput
                       id="firstName"
-                      placeholder="First name"
+                      //   placeholder="First name"
                       {...field}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -94,16 +95,16 @@ const CreateForm = () => {
             </div>
 
             <div style={{ marginBottom: "16px" }}>
+              <InputLabel htmlFor="lastName">Last Name</InputLabel>
               <Field name="lastName">
                 {({ field }) => (
                   <FormControl
                     fullWidth
                     error={touched.lastName && !!errors.lastName}
                   >
-                    <InputLabel htmlFor="lastName">Last Name</InputLabel>
-                    <Input
+                    <OutlinedInput
                       id="lastName"
-                      placeholder="Last name"
+                      //   placeholder="Last name"
                       {...field}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -118,16 +119,16 @@ const CreateForm = () => {
             </div>
 
             <div style={{ marginBottom: "16px" }}>
+              <InputLabel htmlFor="email">Email</InputLabel>
               <Field name="email">
                 {({ field }) => (
                   <FormControl
                     fullWidth
                     error={touched.email && !!errors.email}
                   >
-                    <InputLabel htmlFor="email">Email</InputLabel>
-                    <Input
+                    <OutlinedInput
                       id="email"
-                      placeholder="Enter email"
+                      //   placeholder="Enter email"
                       {...field}
                       onChange={handleChange}
                       onBlur={handleBlur}

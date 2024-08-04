@@ -5,13 +5,19 @@ import styles from "./ContactList.module.css";
 
 const ContactsList = ({ contacts }) => {
   return (
-    <ul className="container">
-      {contacts.map((contact) => (
-        <li className={styles.contactListItem} key={contact.id}>
-          <ContactCard contact={contact} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <div className="container">
+        <div className={styles.contactListWrp}>
+          <h3 className={styles.sectionTitle}> Contacts</h3>
+
+          {contacts.map((contact) => (
+            <div className={styles.contactListItem} key={contact.id}>
+              <ContactCard contact={contact} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 

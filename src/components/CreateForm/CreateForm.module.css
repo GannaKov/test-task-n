@@ -1,8 +1,9 @@
 .sectionTitle {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 1rem;
 }
 .formWrp {
   width: 80%;
+  max-width: 500px;
 }
