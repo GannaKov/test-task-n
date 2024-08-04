@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Button } from "@mui/material";
 
-const BottomComponent = ({ text }) => {
+const ButtonComponent = ({ text, width, children }) => {
   return (
     <Button
       type="submit"
@@ -11,12 +11,13 @@ const BottomComponent = ({ text }) => {
       sx={{
         color: "rgba(0, 0, 0, 0.6)",
         borderColor: "rgba(0, 0, 0, 0.6)",
-        width: "100%",
+        width: { width },
       }}
     >
+      {children}
       {text}
     </Button>
   );
 };
 
-export default BottomComponent;
+export default ButtonComponent;

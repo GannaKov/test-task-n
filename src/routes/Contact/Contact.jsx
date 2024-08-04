@@ -3,9 +3,11 @@ import { addTags, getContactById } from "../../services/requests";
 
 import { useState } from "react";
 import SingleContactCard from "../../components/SingleContactCard/SingleContactCard";
-import { Button, OutlinedInput } from "@mui/material";
+import { OutlinedInput } from "@mui/material";
 import styles from "./Contact.module.css";
-import BottomComponent from "../../components/Shared/BottomComponent";
+
+import ButtonComponent from "../../components/Shared/ButtonComponent";
+import GoBack from "../../components/Shared/GoBack/GoBack";
 
 export async function loader({ params }) {
   const result = await getContactById(params.contactId);
@@ -47,6 +49,10 @@ export default function Contact() {
   return (
     <div className="pageWrapper">
       <div className="section">
+        <div style={{ marginBottom: "2rem" }}>
+          <GoBack state="/" />
+        </div>
+
         {contact ? (
           <div className={`container ${styles.contactContainer}`}>
             <SingleContactCard contact={contact} tags={tags} />
@@ -73,7 +79,7 @@ export default function Contact() {
                 onChange={(e) => setNewTags(e.target.value)}
               />
               {/* <button type="submit">Add Tag</button> */}
-              <BottomComponent text="Add Tag" />
+              <ButtonComponent text="Add Tag" width="100%" />
             </form>
           </div>
         ) : (

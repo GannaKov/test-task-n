@@ -4,14 +4,14 @@ import { Formik, Field, Form } from "formik";
 import styles from "./CreateForm.module.css";
 import * as Yup from "yup";
 import {
-  Button,
   FormControl,
   FormHelperText,
   InputLabel,
   OutlinedInput,
 } from "@mui/material";
 import { createContact } from "../../services/requests";
-import BottomComponent from "../Shared/BottomComponent";
+
+import ButtonComponent from "../Shared/ButtonComponent";
 const validationSchema = Yup.object({
   firstName: Yup.string().required("First name is required"),
   lastName: Yup.string().required("Last name is required"),
@@ -154,7 +154,7 @@ const CreateForm = () => {
             >
               Add Contact
             </Button> */}
-            <BottomComponent text="Add Contact" />
+            <ButtonComponent text="Add Contact" width="100%" />
           </Form>
         )}
       </Formik>
