@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Form, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
-import { colors } from "@mui/material";
+
 import styles from "./ContactCard.module.css";
 import Avatar from "@mui/material/Avatar";
 
@@ -19,7 +19,7 @@ const ContactCard = ({ contact }) => {
   return (
     <Card
       //   variant="outlined"
-      sx={{ backgroundColor: "#EDEDED", padding: "0.5rem 2rem 0.5rem 1rem" }}
+      sx={{ backgroundColor: "#EDEDED", padding: "1rem 2rem 1rem 1rem" }}
     >
       <Link to={`contact/${contact.id}`} className={styles.cardWrp}>
         <Avatar

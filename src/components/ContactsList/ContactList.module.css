@@ -1,5 +1,6 @@
 .contactListItem {
   width: 100%;
+  max-width: 500px;
 }
 .contactListItem:not(:last-child) {
   margin-bottom: 1rem;
