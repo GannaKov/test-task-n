@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 
 import styles from "./ContactCard.module.css";
@@ -19,7 +19,11 @@ const ContactCard = ({ contact }) => {
   return (
     <Card
       //   variant="outlined"
-      sx={{ backgroundColor: "#EDEDED", padding: "1rem 2rem 1rem 1rem" }}
+      sx={{
+        backgroundColor: "#EDEDED",
+        padding: "1rem 2rem 1rem 1rem",
+        position: "relative",
+      }}
     >
       <Link to={`contact/${contact.id}`} className={styles.cardWrp}>
         <Avatar
@@ -46,7 +50,7 @@ const ContactCard = ({ contact }) => {
           </li>
         </ul>
       </Link>
-      {/* <Form
+      <Form
         method="post"
         action={`destroy/${contact.id}`}
         onSubmit={(event) => {
@@ -55,8 +59,10 @@ const ContactCard = ({ contact }) => {
           }
         }}
       >
-        <button type="submit">X</button>
-      </Form> */}
+        <button className={styles.deleteBtn} type="submit">
+          X
+        </button>
+      </Form>
     </Card>
   );
 };

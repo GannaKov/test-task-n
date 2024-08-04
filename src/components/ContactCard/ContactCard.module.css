@@ -26,3 +26,25 @@
   border-radius: 0.25rem;
   font-size: 0.75rem;
 }
+.deleteBtn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: transparent;
+  /* color: white; */
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.deleteBtn:is(:hover, :focus) {
+  background-color: black;
+  color: white;
+}
