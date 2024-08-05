@@ -35,7 +35,6 @@ export default function Contact() {
 
     const tagsArr = { tags: updatedTags };
 
-    console.log("tagsArr", tagsArr);
     await addTags(contact.id, tagsArr);
     setNewTags("");
   };
