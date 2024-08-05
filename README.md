@@ -385,3 +385,8 @@ export default App;
 - [randomUUID](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID)
 - [axios](https://axios-http.com/docs/intro)
 - [netlify 404 page](https://answers.netlify.com/t/support-guide-i-ve-deployed-my-site-but-i-still-see-page-not-found/125?utm_source=404page&utm_campaign=community_tracking)
+
+  "dev": "vite",
+  "build": "vite build",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
