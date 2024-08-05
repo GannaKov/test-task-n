@@ -18,7 +18,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Contact() {
   const navigation = useNavigation();
-  console.log("navigation", navigation.state);
+
   const { result } = useLoaderData();
   const contact = result?.length > 0 ? result[0] : [];
 

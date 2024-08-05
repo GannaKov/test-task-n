@@ -10,7 +10,7 @@ const instance = axios.create({ baseURL: BASEURL });
 export const getContacts = async () => {
   try {
     let urlBackend = "/contacts?record_type=person&sort=created:desc";
-   
+
     const { data } = await instance.get(urlBackend, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -22,6 +22,7 @@ export const getContacts = async () => {
     return data.resources;
   } catch (error) {
     console.log("error", error);
+    throw error.response ? error.response.data : new Error("Unknown error");
   }
 };
 // get contact by id
@@ -36,16 +37,16 @@ export const getContactById = async (id) => {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-  
+
     return data.resources;
   } catch (error) {
-    console.log("error", error);
+    console.log("error", error.response.data);
+    throw error.response ? error.response.data : new Error("Unknown error");
   }
 };
 
 //create contact
 export const createContact = async (contactData) => {
-  
   try {
     let urlBackend = `/contact`;
     const { data } = await instance.post(urlBackend, contactData, {
@@ -59,6 +60,7 @@ export const createContact = async (contactData) => {
     return data;
   } catch (error) {
     console.log("error", error);
+    throw error.response ? error.response.data : new Error("Unknown error");
   }
 };
 
@@ -66,7 +68,6 @@ export const createContact = async (contactData) => {
 //delete contact
 export const deleteContact = async (contactId) => {
   try {
-
     let urlBackend = `/contact/${contactId}`;
     const { data } = await instance.delete(urlBackend, {
       headers: {
@@ -75,17 +76,17 @@ export const deleteContact = async (contactId) => {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    
+
     return data;
   } catch (error) {
     console.log("error", error);
+    throw error.response ? error.response.data : new Error("Unknown error");
   }
 };
 
 // add teags https://live.devnimble.com/api/v1/contacts/66ae7f295290355bdf24eb36/tags
 
 export const addTags = async (contactId, tagsArr) => {
-
   try {
     let urlBackend = `/contacts/${contactId}/tags`;
     const { data } = await instance.put(urlBackend, tagsArr, {
@@ -95,9 +96,10 @@ export const addTags = async (contactId, tagsArr) => {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-   
+
     return data;
   } catch (error) {
     console.log("error", error);
+    throw error.response ? error.response.data : new Error("Unknown error");
   }
 };
