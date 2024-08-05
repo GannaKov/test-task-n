@@ -5,7 +5,7 @@ import axios from "axios";
 const isDevelopment = import.meta.env.DEV;
 const BASEURL = isDevelopment
   ? "/api"
-  : "https://corsproxy.io/https://live.devnimble.com/api/v1";
+  : "https://cors-anywhere.herokuapp.com/https://live.devnimble.com/api/v1";
 const TOKEN = import.meta.env.VITE_API_KEY;
 
 const instance = axios.create({ baseURL: BASEURL });
