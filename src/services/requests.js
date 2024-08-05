@@ -21,6 +21,7 @@ export const getContacts = async () => {
         Authorization: `Bearer ${TOKEN}`,
         // Origin: "http://localhost:5173",
         "X-Requested-With": "XMLHttpRequest",
+        "Access-Control-Allow-Origin": "*",
       },
     });
 
