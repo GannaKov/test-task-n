@@ -10,7 +10,7 @@ This project is a test assignment that allows users to:
 
 # React + Vite
 
-The project template was created based on the ([template-react-vite-modcss](https://github.com/GannaKov/template-react-vite-modcss)).
+The project template was created based on the [template-react-vite-modcss](https://github.com/GannaKov/template-react-vite-modcss).
 
 Special thanks to the maintainers of Vite, React, Babel, and SWC for their tools and libraries.
 
@@ -26,7 +26,7 @@ To get started with this project, follow these steps:
 
 Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-### Preparing for coding
+### Coding and Deployment
 
 1. **Clone the repository:**
 
