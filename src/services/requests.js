@@ -7,7 +7,8 @@ const BASEURL = isDevelopment
   ? "/api"
   : "https://cors-anywhere.herokuapp.com/https://live.devnimble.com/api/v1";
 const TOKEN = import.meta.env.VITE_API_KEY;
-
+console.log("BASEURL", BASEURL);
+console.log("TOKEN ", TOKEN);
 const instance = axios.create({ baseURL: BASEURL });
 
 // get all contacts
