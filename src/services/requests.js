@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const BASEURL = import.meta.env.VITE_BASE_URL;
 // const BASEURL = "/api";
-const isDevelopment = import.meta.env.DEV;
+const isDevelopment = import.meta.env.MODE === "development";
 const BASEURL = isDevelopment
   ? "/api"
   : "https://cors-anywhere.herokuapp.com/https://live.devnimble.com/api/v1";
