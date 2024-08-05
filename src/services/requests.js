@@ -9,7 +9,8 @@ const instance = axios.create({ baseURL: BASEURL });
 // get all contacts
 export const getContacts = async () => {
   try {
-    let urlBackend = "/contacts?record_type=person&sort=created:desc";
+    let urlBackend =
+      "/contacts?record_type=person&sort=created:desc&fields=first%20name,last%20name,email";
 
     const { data } = await instance.get(urlBackend, {
       headers: {
@@ -28,12 +29,12 @@ export const getContacts = async () => {
 // get contact by id
 export const getContactById = async (id) => {
   try {
-    let urlBackend = `/contact/${id}`;
+    let urlBackend = `/contact/${id}?fields=first%20name,last%20name,email`;
 
     const { data } = await instance.get(urlBackend, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
-        // Origin: "http://localhost:5173",
+
         "X-Requested-With": "XMLHttpRequest",
       },
     });
@@ -52,7 +53,7 @@ export const createContact = async (contactData) => {
     const { data } = await instance.post(urlBackend, contactData, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
-        // Origin: "http://localhost:5173",
+
         "X-Requested-With": "XMLHttpRequest",
       },
     });
@@ -64,7 +65,6 @@ export const createContact = async (contactData) => {
   }
 };
 
-//DELETE https://live.devnimble.com/api/v1/contact/${contactId}
 //delete contact
 export const deleteContact = async (contactId) => {
   try {
@@ -72,7 +72,7 @@ export const deleteContact = async (contactId) => {
     const { data } = await instance.delete(urlBackend, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
-        // Origin: "http://localhost:5173",
+
         "X-Requested-With": "XMLHttpRequest",
       },
     });
@@ -84,7 +84,7 @@ export const deleteContact = async (contactId) => {
   }
 };
 
-// add teags https://live.devnimble.com/api/v1/contacts/66ae7f295290355bdf24eb36/tags
+// add teags
 
 export const addTags = async (contactId, tagsArr) => {
   try {
@@ -92,7 +92,7 @@ export const addTags = async (contactId, tagsArr) => {
     const { data } = await instance.put(urlBackend, tagsArr, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
-        // Origin: "http://localhost:5173",
+
         "X-Requested-With": "XMLHttpRequest",
       },
     });

@@ -11,11 +11,6 @@ import GoBack from "../../components/Shared/GoBack/GoBack";
 
 import CircularProgress from "@mui/material/CircularProgress";
 
-// export async function loader({ params }) {
-//   const result = await getContactById(params.contactId);
-//   return { result };
-// }
-
 export default function Contact() {
   const navigation = useNavigation();
 
@@ -34,10 +29,13 @@ export default function Contact() {
       .split(/[^a-zA-Z0-9]+/)
       .filter((tag) => tag.trim() !== "");
 
-    const updatedTags = [...tags, ...newTagsArray];
+    // const updatedTags = [...tags, ...newTagsArray];
+    const updatedTags = Array.from(new Set([...tags, ...newTagsArray]));
     setTags(updatedTags);
 
     const tagsArr = { tags: updatedTags };
+
+    console.log("tagsArr", tagsArr);
     await addTags(contact.id, tagsArr);
     setNewTags("");
   };

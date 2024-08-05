@@ -11,7 +11,7 @@ export default function Root() {
 
   return (
     <div className="pageWrapper stickyPage">
-      {/* <div className={styles.rootWrp}> */}
+     
       <div className="section sticky">
         <CreateForm />
       </div>
@@ -23,7 +23,7 @@ export default function Root() {
           </div>
         ) : null}
         <ContactsList contacts={contacts} />
-        {/* </div> */}
+       
       </div>
     </div>
   );

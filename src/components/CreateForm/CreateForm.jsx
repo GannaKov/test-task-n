@@ -13,11 +13,16 @@ import { createContact } from "../../services/requests";
 
 import ButtonComponent from "../Shared/ButtonComponent";
 const validationSchema = Yup.object({
-  firstName: Yup.string().required("First name is required"),
-  lastName: Yup.string().required("Last name is required"),
+  firstName: Yup.string()
+    .max(20, "First name is too long (max 20 characters)")
+    .required("First name is required"),
+  lastName: Yup.string()
+    .max(20, "Last name is too long (max 20 characters)")
+    .required("Last name is required"),
 
   email: Yup.string()
     .email("Invalid email format")
+    .max(50, "Email is too long (max 50 characters)")
     .matches(
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
       "Invalid email format"

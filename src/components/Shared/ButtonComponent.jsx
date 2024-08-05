@@ -12,18 +12,7 @@ const theme = createTheme({
       main: "#f50057",
       contrastText: "#fff",
     },
-    white: {
-      main: "#f0f8ff",
-      light: "#FFFFFF",
-      dark: "#FFFFFF",
-      contrastText: "#000000",
-    },
-    black: {
-      main: "#0000000",
-      light: "#FFFFFF",
-      dark: "#000000",
-      contrastText: "#FFFFFF",
-    },
+    
   },
 });
 
@@ -35,8 +24,6 @@ const ButtonComponent = ({ text, width, children, type }) => {
         color="primary"
         variant="outlined"
         sx={{
-          // color: "rgba(0, 0, 0, 0.6)",
-
           borderColor: "#00000099",
           width: { width },
         }}

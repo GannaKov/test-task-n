@@ -28,7 +28,7 @@ const ContactCard = ({ contact }) => {
       <Link to={`contact/${contact.id}`} className={styles.cardWrp}>
         <Avatar
           src={avatar}
-          alt={`${contact.fields["last name"]?.value}${contact.fields["first name"]?.value}`.trim()}
+          alt={`${firstName}${lastName}`}
           sx={{ width: 59, height: 59, border: 1 }}
         />
         <ul className={styles.infoWrp}>
