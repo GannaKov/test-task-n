@@ -6,7 +6,8 @@ const isDevelopment = import.meta.env.MODE === "development";
 const BASEURL = isDevelopment
   ? "/api"
   : "https://cors-anywhere.herokuapp.com/https://live.devnimble.com/api/v1";
-const TOKEN = import.meta.env.VITE_API_KEY;
+//const TOKEN = import.meta.env.VITE_API_KEY;
+const TOKEN = "VlP9cwH6cc7Kg2LsNPXpAvF6QNmgZn";
 console.log("BASEURL", BASEURL);
 console.log("TOKEN ", TOKEN);
 const instance = axios.create({ baseURL: BASEURL });
