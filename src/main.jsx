@@ -42,19 +42,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Root />,
-//     errorElement: <ErrorPage />,
-//     loader: rootLoader,
-//     children: [
-//       {
-//         path: "contact/:contactId",
-//         element: <Contact />,
-//         loader: contactLoader,
-//       },
-//     ],
-//   },
-// ]);

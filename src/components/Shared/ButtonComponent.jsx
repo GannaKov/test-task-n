@@ -12,17 +12,17 @@ const theme = createTheme({
       main: "#f50057",
       contrastText: "#fff",
     },
-    
   },
 });
 
-const ButtonComponent = ({ text, width, children, type }) => {
+const ButtonComponent = ({ text, width, children, type, disabled = false }) => {
   return (
     <ThemeProvider theme={theme}>
       <Button
         type={type}
         color="primary"
         variant="outlined"
+        disabled={disabled}
         sx={{
           borderColor: "#00000099",
           width: { width },

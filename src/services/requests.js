@@ -6,7 +6,13 @@ const BASEURL = isDevelopment
   : "https://cors-anywhere.herokuapp.com/https://live.devnimble.com/api/v1";
 const TOKEN = import.meta.env.VITE_API_KEY;
 
-const instance = axios.create({ baseURL: BASEURL });
+const instance = axios.create({
+  baseURL: BASEURL,
+  headers: {
+    Authorization: `Bearer ${TOKEN}`,
+    "X-Requested-With": "XMLHttpRequest",
+  },
+});
 
 // get all contacts
 export const getContacts = async () => {
@@ -14,13 +20,7 @@ export const getContacts = async () => {
     let urlBackend =
       "/contacts?record_type=person&sort=created:desc&fields=first%20name,last%20name,email";
 
-    const { data } = await instance.get(urlBackend, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        // Origin: "http://localhost:5173",
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
+    const { data } = await instance.get(urlBackend);
 
     return data.resources;
   } catch (error) {
@@ -33,13 +33,7 @@ export const getContactById = async (id) => {
   try {
     let urlBackend = `/contact/${id}?fields=first%20name,last%20name,email`;
 
-    const { data } = await instance.get(urlBackend, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
+    const { data } = await instance.get(urlBackend);
 
     return data.resources;
   } catch (error) {
@@ -52,13 +46,7 @@ export const getContactById = async (id) => {
 export const createContact = async (contactData) => {
   try {
     let urlBackend = `/contact`;
-    const { data } = await instance.post(urlBackend, contactData, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
+    const { data } = await instance.post(urlBackend, contactData);
 
     return data;
   } catch (error) {
@@ -71,13 +59,7 @@ export const createContact = async (contactData) => {
 export const deleteContact = async (contactId) => {
   try {
     let urlBackend = `/contact/${contactId}`;
-    const { data } = await instance.delete(urlBackend, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
+    const { data } = await instance.delete(urlBackend);
 
     return data;
   } catch (error) {
@@ -91,13 +73,7 @@ export const deleteContact = async (contactId) => {
 export const addTags = async (contactId, tagsArr) => {
   try {
     let urlBackend = `/contacts/${contactId}/tags`;
-    const { data } = await instance.put(urlBackend, tagsArr, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
+    const { data } = await instance.put(urlBackend, tagsArr);
 
     return data;
   } catch (error) {
