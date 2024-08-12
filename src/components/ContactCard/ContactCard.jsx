@@ -5,6 +5,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import styles from "./ContactCard.module.css";
 import Avatar from "@mui/material/Avatar";
+import TagsBlock from "../Shared/TagsBlock/TagsBlock";
 
 const ContactCard = ({ contact }) => {
   const lastName = contact.fields?.["last name"]?.[0]?.value || "";
@@ -16,7 +17,9 @@ const ContactCard = ({ contact }) => {
   const avatar =
     contact.avatar_url || `https://robohash.org/${contact.id}.png?size=200x200`;
 
-  const tags = contact.tags;
+  const tags = contact.tags.map((tag) => tag.tag);
+  // const tags = Object.keys(contact.tags);
+  console.log("tags", tags);
   return (
     <Card
       sx={{
@@ -40,11 +43,7 @@ const ContactCard = ({ contact }) => {
           <li className={styles.infoItem}>
             {tags.length > 0 && (
               <div className={styles.tagsWrp}>
-                {tags.map((tag) => (
-                  <div className={styles.tagsItem} key={tag.id}>
-                    {tag.tag}
-                  </div>
-                ))}
+                {tags.length > 0 && <TagsBlock tags={tags} />}
               </div>
             )}
           </li>
